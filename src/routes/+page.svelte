@@ -90,7 +90,7 @@
   </section>
 
   <footer>
-    <FooterBackground />
+    <!-- <FooterBackground /> -->
     <p>&copy; 2024 Quadrant X. All rights reserved.</p>
   </footer>
 </div>
@@ -98,7 +98,7 @@
 <style lang="scss">
   header {
     text-align: center;
-    transform: translateY(-8rem);
+    transform: translateY(-2rem);
     @media screen and (min-width: 1500px) {
       transform: translateY(-20rem);
     }
@@ -107,27 +107,31 @@
   section.summary {
     display: flex;
     align-items: center;
-    transform: translateY(-2rem);
+    padding: 0 2rem;
+    transform: translateY(0rem);
     @media screen and (min-width: 1500px) {
       transform: translateY(-10rem);
     }
     p {
       max-width: 40rem;
       margin: 0 auto;
-      text-align: justify;
     }
   }
 
   section {
     max-width: 80rem;
     margin: 0 auto 8rem;
+    padding: 0 2rem;
   }
 
   footer {
-    height: 24.8rem;
-    margin: 16rem 0 0;
     padding: 4rem 0 0;
+    background: url("/footer.svg") no-repeat center center;
     text-align: center;
     overflow: hidden;
+    @media screen and (min-width: 1500px) {
+      margin: 16rem 0 0;
+      padding: 4rem 0 0;
+    }
   }
 </style>
