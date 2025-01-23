@@ -1,0 +1,86 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Saira:ital,wght@0,100..900;1,100..900&display=swap');
+
+@import "fonts";
+
+:root {
+  --background: #000323;
+  --foreground: #FFFFFF;
+}
+
+*,
+*::before,
+*::after {
+  position: relative;
+  box-sizing: border-box;
+}
+
+html {
+  margin: 0;
+  background: var(--background);
+  color: var(--foreground);
+  font-family: "Saira", serif;
+  font-optical-sizing: auto;
+  font-size: var(--fluid-0);
+  font-weight: 200;
+  font-style: normal;
+  line-height: var(--fluid-2);
+  font-variation-settings: "wdth" 100;
+}
+
+body {
+  margin: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 0; 
+  font-size: 1rem;
+  font-weight: 400;
+}
+
+.heading-1 {
+  font-size: var(--fluid-5);
+  font-weight: 100;
+  line-height: var(--fluid-6);
+}
+.heading-2 {
+  font-size: var(--fluid-2);
+  font-weight: 100;
+  line-height: var(--fluid-3);
+}
+.heading-3 {
+  font-size: var(--fluid-3);
+  font-weight: 800;
+  line-height: var(--fluid-4);
+}
+p {
+  font-size: var(--fluid-0);
+}
+
+.weight-1 {
+  font-weight: 100;
+}
+.weight-2 {
+  font-weight: 200;
+}
+.weight-3 {
+  font-weight: 300;
+}
+.weight-4 {
+  font-weight: 400;
+}
+.weight-5 {
+  font-weight: 500;
+}
+.weight-6 {
+  font-weight: 600;
+}
+.weight-7 {
+  font-weight: 700;
+}
+.weight-8 {
+  font-weight: 800;
+}
+.weight-9 {
+  font-weight: 900;
+}
