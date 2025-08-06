@@ -42,7 +42,7 @@
   }
 
   ul {
-    margin: 4rem 0rem;
+    margin: 4rem 0rem 6rem;
     padding: 0;
     list-style: none;
     @media screen and (min-width: 1200px) {

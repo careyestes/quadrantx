@@ -15,7 +15,7 @@
     height: 100vh;
     display: flex;
     flex-direction: column;
-    padding: 7rem 2rem 2rem;
+    padding: 7rem 2rem 6rem;
     // align-items: center;
     // justify-content: center;
     overflow-y: auto;

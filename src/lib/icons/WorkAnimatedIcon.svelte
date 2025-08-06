@@ -111,6 +111,10 @@
     }
     p {
       font-size: 1rem;
+      margin-bottom: 4rem;
+      @media screen and (min-width: 1200px) {
+        margin-bottom: 1rem;
+      }
     }
   }
 

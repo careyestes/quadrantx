@@ -138,6 +138,9 @@
       align-items: flex-start;
       padding: 6% 2rem;
       background-image: repeating-linear-gradient( 45deg, var(--line-color) 0, var(--line-color) var(--line-width), transparent var(--line-width), transparent var(--line-spacing));
+      &:last-child {
+        padding-bottom: 6rem;
+      }
       @media screen and (min-width: 1200px) {
         align-items: center;
         height: 100vh;
