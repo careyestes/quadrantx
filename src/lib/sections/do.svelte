@@ -96,6 +96,7 @@
     height: 100%;
     overflow-y: auto;
     scrollbar-width: thin;
+    -webkit-overflow-scrolling: touch;
   }
   .split::-webkit-scrollbar {
     width: 5px;
