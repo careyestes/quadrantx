@@ -82,7 +82,9 @@ p {
 section {
   width: 100vw;
   height: 100vh;
-  scroll-snap-align: start;
   margin: 0 auto;
   padding: 0 2rem;
+  @media screen and (min-width: 1200px) {
+    scroll-snap-align: start;
+  }
 }

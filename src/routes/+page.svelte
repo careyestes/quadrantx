@@ -71,7 +71,7 @@
           }
         }
       },
-      { root, threshold: 0.5 }
+      { root, threshold: 0.25 }
     );
 
     sections.forEach((s) => io.observe(s));
