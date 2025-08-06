@@ -11,95 +11,72 @@
   import SummaryWork from "$lib/sections/work.svelte";
 
   let scrollContainer;
+  let workLoopTimeout = null;
+
+  function startWorkLoop(section) {
+    if (workLoopTimeout) return;
+    // ensure class is on immediately
+    section.classList.add('in-view');
+
+    // schedule the remove/add every 10s
+    workLoopTimeout = setTimeout(function pulse() {
+      section.classList.remove('in-view');
+      void section.offsetWidth;  // force reflow
+      section.classList.add('in-view');
+      workLoopTimeout = setTimeout(pulse, 10000);
+    }, 10000);
+  }
+
+  function stopWorkLoop(section) {
+    if (workLoopTimeout) {
+      clearTimeout(workLoopTimeout);
+      workLoopTimeout = null;
+    }
+    section.classList.remove('in-view');
+  }
     
   onMount(() => {
-    const stickyLogo = document.querySelector(".sticky-logo");
-    let workAnimationTimeout = null;   // will hold our single timer ID
-    let isLooping = false;             // guard so we only start once
+    const stickyLogo = document.querySelector('.sticky-logo');
+    const sections = Array.from(scrollContainer.querySelectorAll('section'));
+    const scrollable = scrollContainer.scrollHeight > scrollContainer.clientHeight;
+    const root = scrollable ? scrollContainer : null;
+    const firstSection = sections[0];
 
-    function isInViewport(element, container) {
-      const rect = element.getBoundingClientRect();
-      const containerRect = container.getBoundingClientRect();
-      
-      return (
-        rect.top >= containerRect.top && rect.bottom <= containerRect.bottom
-      );
-    }
+    const io = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          const sec = entry.target;
+          // toggle in-view on every section as before
+          if (entry.isIntersecting) {
+            sec.classList.add('in-view');
+          } else {
+            sec.classList.remove('in-view');
+          }
 
-    function loopWorkAnimation() {
-      const work = document.querySelector(".work");
+          // but for your “work” section, also start/stop the 10 s loop:
+          if (sec.classList.contains('work')) {
+            if (entry.isIntersecting) {
+              startWorkLoop(sec);
+            } else {
+              stopWorkLoop(sec);
+            }
+          }
 
-      // If it’s out of view, bail and clear the flag+timer
-      if (!isInViewport(work, scrollContainer)) {
-        clearTimeout(workAnimationTimeout);
-        workAnimationTimeout = null;
-        isLooping = false;
-        return;
-      }
-
-      // Remove/add to retrigger the CSS animation
-      work.classList.remove("in-view");
-      void work.offsetWidth;         // force reflow
-      work.classList.add("in-view");
-
-      // schedule next pulse
-      workAnimationTimeout = setTimeout(loopWorkAnimation, 10000);
-    }
-
-
-    function handleScroll() {
-      const sections = scrollContainer.querySelectorAll("section");
-
-      // 1) handle the “work” section separately
-      const work = document.querySelector(".work");
-      if (isInViewport(work, scrollContainer)) {
-        work.classList.add("in-view");
-
-        // only kick off the loop the first time it becomes visible
-        if (!isLooping) {
-          isLooping = true;
-          loopWorkAnimation();
+          if (sec === firstSection) {
+            if (entry.isIntersecting) {
+              stickyLogo.classList.remove('show');
+            } else {
+              stickyLogo.classList.add('show');
+            }
+          }
         }
-      } else {
-        // remove class and kill any running loop
-        work.classList.remove("in-view");
-        if (isLooping) {
-          clearTimeout(workAnimationTimeout);
-          workAnimationTimeout = null;
-          isLooping = false;
-        }
-      }
+      },
+      { root, threshold: 0.5 }
+    );
 
-      // 2) handle your other sections exactly as before
-      sections.forEach((sec) => {
-        if (sec === work) return; // already handled
-        if (isInViewport(sec, scrollContainer)) {
-          sec.classList.add("in-view");
-        } else {
-          sec.classList.remove("in-view");
-        }
-      });
-
-      // sticky-logo logic unchanged…
-      if (isInViewport(sections[0], scrollContainer)) {
-        stickyLogo.classList.remove("show");
-      } else {
-        stickyLogo.classList.add("show");
-      }
-    }
-
-    // Attach the scroll listener
-    scrollContainer.addEventListener('scroll', handleScroll);
-
-    // Initial check in case the user starts midway through the page
-    handleScroll();
-
-    // Cleanup listener on component destroy
-    return () => {
-      scrollContainer.removeEventListener('scroll', handleScroll);
-    };
+    sections.forEach((s) => io.observe(s));
+    return () => io.disconnect();
   });
-
 </script>
 
 <div class="sticky-logo">
@@ -329,6 +306,7 @@
     height: auto;
     padding: 8rem 2rem 0; 
     @media screen and (min-width: 1200px) {
+      height: 100vh;
       padding: 6rem 0 0; 
       align-items: center;
       justify-content: center;

@@ -11,17 +11,25 @@
 
 <style lang="scss">
 
+  :global(section.work) {
+    height: auto;
+    padding: 0;
+    @media screen and (min-width: 1200px) { 
+      height: 100vh;
+    }
+  }
+
   .wrapper {
-    height: 100vh;
     display: flex;
     flex-direction: column;
     padding: 7rem 2rem 6rem;
     // align-items: center;
     // justify-content: center;
-    overflow-y: auto;
-    scrollbar-width: thin;
     @media screen and (min-width: 1200px) {
+      height: 100vh;
       padding: 7rem 0 15rem;
+      overflow-y: auto;
+      scrollbar-width: thin;
     }
   }
   h3 {

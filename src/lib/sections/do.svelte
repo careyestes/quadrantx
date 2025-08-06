@@ -90,46 +90,54 @@
   }
 
   :global(section.do) {
+    height: auto;
     padding: 0;
+    @media screen and (min-width: 1200px) {
+      height: 100vh;
+    }
   }
   .split {
-    width: 100%;
-    height: 100%;
-    overflow-y: auto;
-    scrollbar-width: thin;
+    @media screen and (min-width: 1200px) {
+      width: 100%;
+      height: 100%;
+      overflow-y: auto;   
+    }
   }
+
   .split::-webkit-scrollbar {
     width: 5px;
   }
 
   .heading-3 {
-    position: sticky;
+    position: relative;
     z-index: 1;
     flex: 0 0 auto;
-    padding: 0; 
-    top: 6rem;
+    padding: 6rem 0 0; 
     font-size: var(--fluid-6);
     line-height: normal;
     text-align: center;
     text-shadow: 0 0 8px var(--grey-900);
     @media screen and (min-width: 1200px) {
+      position: sticky;
+      top: 6rem;
       width: 50%;
       top: 40vh;
+      padding: 0; 
     }
     span {
       color: var(--primary);
     }
   }
   ul {
-    position: absolute;
-    top: 12rem;
-    right: 0;
-    z-index: 0;
-    max-height: 100vh;
     list-style: none;
     padding: 0;
     margin: 0;
     @media screen and (min-width: 1200px) {
+      position: absolute;
+      top: 12rem;
+      right: 0;
+      z-index: 0;
+      max-height: 100vh;
       width: 50%;
       top: 0;
       padding: 2rem 0;

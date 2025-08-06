@@ -21,6 +21,13 @@
 </div>
 <style lang="scss">
 
+  :global(section.choose) {
+    height: auto;
+    padding: 0;
+    @media screen and (min-width: 1200px) {
+      height: 100vh;
+    }
+  }
   .heading-3 {
     font-size: var(--fluid-4);
     line-height: var(--fluid-5);
@@ -36,9 +43,11 @@
   }
 
   .chooseContainer {
-    height: 100vh;
-    overflow-y: auto;
-    scrollbar-width: thin;
+    @media screen and (min-width: 1200px) {
+      height: 100vh;
+      overflow-y: auto;
+      scrollbar-width: thin;
+    }
   }
 
   ul {

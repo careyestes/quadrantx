@@ -102,16 +102,20 @@
     margin: 0 auto;
     padding: 0 0 0;
     list-style: none;
+    @media screen and (min-width: 1200px) {
+      padding: 2rem 0 0;
+      
+    }
     h4 {
       margin: 0;
       font-size: 2rem;
-      &.highlight {
-        transition: color 0.3s ease;
-      }
     }
     p {
       font-size: 1rem;
       margin-bottom: 4rem;
+      @media screen and (min-width: 1200px) {
+        margin-bottom: 1rem;
+      }
     }
   }
 
