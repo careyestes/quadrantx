@@ -1,8 +1,9 @@
 <script>
   import SpinLine from "$lib/icons/SpinLine.svelte";
+  import { preventScrollChain } from "$lib/actions/preventScrollChain";
 </script>
 
-<div class="split">
+<div class="split" use:preventScrollChain>
   <h3 class="heading-3">What We Do<span>.</span></h3>
   <ul>
     <li>
