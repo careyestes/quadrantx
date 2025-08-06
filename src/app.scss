@@ -1,12 +1,5 @@
-
-@import url('https://fonts.googleapis.com/css2?family=Saira:ital,wght@0,100..900;1,100..900&display=swap');
-
-@import "fonts";
-
-:root {
-  --background: #000323;
-  --foreground: #FFFFFF;
-}
+@use "./styles/fonts";
+@use "./styles/colors";
 
 *,
 *::before,
@@ -26,6 +19,7 @@ html {
   font-style: normal;
   line-height: var(--fluid-2);
   font-variation-settings: "wdth" 100;
+  scrollbar-width: thin;
 }
 
 body {
@@ -83,4 +77,12 @@ p {
 }
 .weight-9 {
   font-weight: 900;
+}
+
+section {
+  width: 100vw;
+  height: 100vh;
+  scroll-snap-align: start;
+  margin: 0 auto;
+  padding: 0 2rem;
 }
